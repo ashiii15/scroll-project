@@ -12,11 +12,40 @@ const btn = document.querySelector(".nav-toggle")
 const linkContainer = document.querySelector(".links-container")
 const link = document.querySelector(".links")
 btn.addEventListener("click",function(){
-    linkContainer.classList.toggle("show-links")
+    // linkContainer.classList.toggle("show-links")
+    let containerLength = linkContainer.getBoundingClientRect().height
+    let linkLength = link.getBoundingClientRect().height
+    // console.log(linkLength);
+    if(containerLength === 0){
+        linkContainer.style.height = `${linkLength}px`
+    }
+    else{
+        linkContainer.style.height = 0 
+    }
+
 })
 
 
 // ********** fixed navbar ************
+const navbarFix = document.querySelector(".fixed-nav")
+const nav = document.getElementById("nav")
+const topLink = document.querySelector(".top-link")
+window.addEventListener("scroll",function(){
+    const scrollHeight = window.scrollY;
+    const navHeight = nav.getBoundingClientRect().height;
+    if(scrollHeight > navHeight){
+        nav.classList.add("fixed-nav")
+    }
+    else{
+        nav.classList.remove("fixed-nav")
+    }
+
+    if(scrollHeight > 500){
+        topLink.classList.add("show-link")
+    }else{
+        topLink.classList.remove("show-link")
+    }  
+})
 
 // ********** smooth scroll ************
 // select links
